@@ -1,5 +1,8 @@
 <template>
   <router-view/>
+  <van-sticky position="bottom">
+    <MusicDetailFooter/>
+  </van-sticky>
 </template>
 
 <style lang="less">
@@ -14,3 +17,11 @@ a {
   color: black;
 }
 </style>
+
+<script>
+import MusicDetailFooter from "@/components/detail/MusicDetailFooter.vue";
+
+export default {
+  components: {MusicDetailFooter}
+}
+</script>

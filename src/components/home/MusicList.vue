@@ -1,6 +1,6 @@
 <!--首页中下区域-歌单列表-->
 <template>
-  <div class="musicList">
+  <div class="itemListTop">
     <div class="musicTop">
       <div class="title">发现好歌单</div>
       <div class="more">查看更多</div>
@@ -51,7 +51,7 @@ function changeCountUnit(playCount) {
 </script>
 
 <style lang="less" scoped>
-.musicList {
+.itemListTop {
   width: 100%;
   height: 5rem;
   padding: .2rem;

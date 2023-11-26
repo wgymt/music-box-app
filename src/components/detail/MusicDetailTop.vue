@@ -26,33 +26,40 @@
     <!--右侧歌单信息-->
     <div class="midRight">
       <!--标题-->
-      <p>chek</p>
-      <span>{{ playlist.name }}}</span>
-      <div class="musicInfo">
+      <p class="rightP_one">{{ playlist.name }}</p>
+      <div class="right_img">
         <!--用户名-->
-        <span>{{ playlist.name }}</span>
+        <img v-if="playlist.creator != null" :src="playlist.creator.backgroundUrl" alt=""/>
+        <span v-if="playlist.creator != null">{{ playlist.creator.nickname }}</span>
+        <!--<span>测试用户</span>-->
+        <IconRight theme="outline" size=".33rem" fill="#333"
+                   style="margin-top: -0.08rem; vertical-align: middle"/>
+      </div>
+      <p class="rightP_two">
         <!--描述-->
         <span>{{ playlist.description }}</span>
-      </div>
+        <IconRight theme="outline" size=".24rem" fill="#333"
+                   v-if="playlist.description !== '' "/>
+      </p>
     </div>
   </div>
 
   <!--功能菜单-->
   <div class="musicDetailBottom">
     <div class="otherItem">
-      <IconComments theme="outline" size=".5rem" fill="#333"/>
-      <span>40</span>
+      <IconComments theme="outline" size=".5rem" fill="#fff"/>
+      <span>{{ playlist.commentCount }}</span>
     </div>
     <div class="otherItem">
-      <IconShareOne one theme="outline" size=".5rem" fill="#333"/>
-      <span>分享</span>
+      <IconShareOne one theme="outline" size=".5rem" fill="#fff"/>
+      <span>{{ playlist.shareCount }}</span>
     </div>
     <div class="otherItem">
-      <IconDownload theme="outline" size=".5rem" fill="#333"/>
+      <IconDownload theme="outline" size=".5rem" fill="#fff"/>
       <span>下载</span>
     </div>
     <div class="otherItem">
-      <IconCheckCorrect theme="outline" size=".5rem" fill="#333"/>
+      <IconCheckCorrect theme="outline" size=".5rem" fill="#fff"/>
       <span>多选</span>
     </div>
   </div>
@@ -66,12 +73,13 @@ import {
   Download as IconDownload,
   HamburgerButton as IconHamburgerButton,
   PlayOne as IconPlayOne,
+  Right as IconRight,
   Search as IconSearch,
   ShareOne as IconShareOne
 } from "@icon-park/vue-next";
 
 const props = defineProps(['playlist'])
-console.log(props.playlist)
+console.log("歌曲详情列表: ", props)
 
 // 转换计算单位
 function changeCountUnit(playCount) {
@@ -102,18 +110,13 @@ function changeCountUnit(playCount) {
 
     span {
       font-size: .4rem;
-      color: white;
-    }
-
-    .i-icon {
-      fill: white;
     }
   }
 
   .bgImg {
     width: 100%;
     height: 10rem;
-    position: fixed;
+    position: absolute;
     z-index: -1;
     filter: blur(0.6rem);
   }
@@ -121,30 +124,115 @@ function changeCountUnit(playCount) {
 
 .musicDetailMid {
   width: 100%;
-  height: 2rem;
+  height: 3rem;
+  padding: 0.2rem;
+  margin-top: 0.4rem;
+  display: flex;
+  justify-content: space-between;
 
-  .musicAvatar {
-    width: 100%;
-    height: 3rem;
-    position: fixed;
+  .midLeft {
+    width: 36%;
+    height: 2.6rem;
+    position: relative;
+
+    img {
+      width: 2.6rem;
+      height: 2.6rem;
+      border-radius: 0.2rem;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .playCount {
+      position: absolute;
+      right: 0.1rem;
+      margin-top: 0.1rem;
+
+      .icon {
+        width: 0.26rem;
+        height: 0.26rem;
+        margin-top: -0.02rem;
+        vertical-align: middle;
+      }
+
+      span {
+        font-size: 0.26rem;
+        color: #fff;
+      }
+    }
+  }
+
+  .midRight {
+    width: 60%;
+    height: 2.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .rightP_one {
+      font-size: 0.3rem;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .right_img {
+      width: 100%;
+      height: 0.6rem;
+      line-height: 0.6rem;
+      color: #ccc;
+
+      img {
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        vertical-align: middle;
+      }
+
+      span {
+        margin-left: 0.1rem;
+      }
+    }
+
+    .rightP_two {
+      width: 100%;
+      height: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      span {
+        display: inline-block;
+        width: 95%;
+        height: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        font-size: 0.24rem;
+        color: #ccc;
+      }
+    }
   }
 }
 
+
 .musicDetailBottom {
-  margin-top: 0.2rem;
   width: 100%;
-  height: 2rem;
+  height: 1.4rem;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  margin-top: .2rem;
 
   .otherItem {
-    width: 25%;
-    height: 100%;
     display: flex;
-    // 垂直放置内容
     flex-direction: column;
     align-items: center;
+    color: #fff;
+
+    span {
+      margin-top: .1rem;
+    }
   }
 }
 </style>
