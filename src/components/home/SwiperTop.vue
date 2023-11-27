@@ -38,7 +38,7 @@ onMounted(async () => {
     }
 
     // 想要在scoped中影响子组件样式,使用深度选择器v-deep
-    ::v-deep .van-swipe__indicators {
+    :deep (.van-swipe__indicators) {
       .van-swipe__indicator--active {
         background-color: rgb(219, 130, 130);
       }

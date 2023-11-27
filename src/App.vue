@@ -1,8 +1,8 @@
 <template>
   <router-view/>
-  <van-sticky position="bottom">
-    <MusicDetailFooter/>
-  </van-sticky>
+  <!--<van-sticky position="bottom">-->
+  <MusicDetailFooter/>
+  <!--</van-sticky>-->
 </template>
 
 <style lang="less">

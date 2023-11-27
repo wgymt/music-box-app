@@ -48,7 +48,7 @@ import {
 } from "@icon-park/vue-next";
 
 const props = defineProps(['songs', 'subscribedCount'])
-console.log("songs props: ", props)
+// console.log("songs props: ", props)
 
 
 // 播放歌曲
@@ -62,8 +62,8 @@ function playSong(index) {
   width: 100%;
   height: 10rem;
   background-color: #fff;
-  padding: 0 0.2rem;
-  margin-top: 0.2rem;
+  padding: 0 .2rem;
+  margin-top: .2rem;
   border-top-left-radius: 0.4rem;
   border-top-right-radius: 0.4rem;
 
@@ -104,6 +104,9 @@ function playSong(index) {
 
   .itemList {
     width: 100%;
+    // 解决只显示19条的问题(总共20条)
+    position: relative;
+    padding-bottom: 1.5rem;
 
     .item {
       width: 100%;

@@ -21,7 +21,7 @@ onMounted(async () => {
   playlist.value = detailRes.data.playlist
   // 根据id获取歌单所有歌曲
   const musicRes = await getMusicList(id)
-  console.log(musicRes)
+  // console.log(musicRes.data.songs)
   songs.value = musicRes.data.songs
 })
 </script>

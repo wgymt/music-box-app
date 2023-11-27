@@ -79,7 +79,7 @@ import {
 } from "@icon-park/vue-next";
 
 const props = defineProps(['playlist'])
-console.log("歌曲详情列表: ", props)
+// console.log("歌曲详情列表: ", props)
 
 // 转换计算单位
 function changeCountUnit(playCount) {
