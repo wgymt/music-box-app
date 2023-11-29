@@ -215,7 +215,6 @@ function changeCountUnit(playCount) {
   }
 }
 
-
 .musicDetailBottom {
   width: 100%;
   height: 1.4rem;

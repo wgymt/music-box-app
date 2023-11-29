@@ -5,10 +5,10 @@
     <div class="detailTopLeft">
       <IconArrowLeft theme="outline" size=".7rem" @click="back"/>
       <div class="leftMarquee ">
-        <marquee behavior="" direction="" style="color: white">
-          <!--歌名-->
-          {{ musicList.name }}
-        </marquee>
+        <!--<marquee behavior="" direction="" style="color: white">-->
+        <!--歌名-->
+        {{ musicList.name }}
+        <!--</marquee>-->
         <!--歌手-->
         <span v-for="item in musicList.ar" :key="item">{{ item.name }}</span>
         <!--歌手右侧小箭头-->
@@ -22,17 +22,19 @@
     </div>
   </div>
 
-  <div class="detailContent" v-show="isLyricShow">
+  <div class="detailContent" v-show="!isLyricShow">
     <img src="@/assets/needle-ab.png" alt="" class="img_needle"
          :class="{img_needle_active:!isBtnShow}"/>
     <img src="@/assets/cd.png" alt="" class="img_cd"/>
     <img :src="musicList.al?.picUrl" alt="" class="img_ar"
+         @click="isLyricShow=true"
          :class="[!isBtnShow ? 'img_ar_active' : 'img_ar_pause']"
     />
   </div>
 
-  <div class="lyric" ref="currentLyric">
+  <div class="lyric" ref="currentLyric" v-show="isLyricShow" @click="isLyricShow=false">
     <p v-for="item in lyricHandler" :key="item"
+
        :class="{active: currentTime>= item.time && currentTime < item.pre}">
       {{ item.lrcChar }}</p>
   </div>
@@ -48,10 +50,14 @@
     <div class="footerContent"></div>
     <div class="footer">
       <IconLoopOnce theme="outline" size=".7rem" fill="#333"/>
-      <IconGoStart theme="outline" size=".7rem" fill="#333"/>
+      <!--上一首-->
+      <IconGoStart theme="outline" size=".7rem" fill="#333" @click="goPlay(-1)"/>
+      <!--播放-->
       <IconPlay theme="outline" size="1.2rem" fill="#333" @click="play" v-if="isBtnShow"/>
+      <!--暂停-->
       <IconPauseOne theme="outline" size="1.2rem" fill="#333" @click="stop" v-else/>
-      <IconGoEnd theme="outline" size=".7rem" fill="#333"/>
+      <!--下一首-->
+      <IconGoEnd theme="outline" size=".7rem" fill="#333" @click="goPlay(1)"/>
       <IconMusicList theme="outline" size=".7rem" fill="#333"/>
     </div>
   </div>
@@ -79,14 +85,20 @@ import {useMapState} from "@/hooks/useMapState.js";
 import {useStore} from "vuex";
 
 
-defineProps(['musicList', 'play', 'stop', 'isBtnShow'])
+const props = defineProps(['musicList', 'play', 'stop', 'isBtnShow'])
 
 const store = useStore()
 const back = () => {
   store.commit('updateDetailShow')
 }
 
-const {detailShow, lyricList, currentTime} = useMapState(['currentTime', 'detailShow', 'lyricList'])
+const {
+  playListIndex,
+  detailShow,
+  lyricList,
+  currentTime,
+  playList
+} = useMapState(['playList', 'playListIndex', 'currentTime', 'detailShow', 'lyricList'])
 
 const isLyricShow = ref(false);
 
@@ -114,7 +126,7 @@ const lyricHandler = computed(() => {
   }
   arr.forEach((item, i) => {
     if (i === arr.length - 1 || isNaN(arr[i + 1].time)) {
-      item.pre = 0;
+      item.pre = 100;
     } else {
       item.pre = arr[i + 1].time
     }
@@ -131,6 +143,19 @@ watch(() => currentTime.value, () => {
       }
     }
 )
+
+// 上一首/下一首
+const goPlay = (num) => {
+  let index = playListIndex.value + num
+  if (index < 0) {
+    index = playList.value.length - 1
+  }
+  if (index === playList.value.length) {
+    index = 0
+  }
+  store.commit('updatePlayListIndex', index)
+  props.play()
+}
 </script>
 
 <style lang="less" scoped>

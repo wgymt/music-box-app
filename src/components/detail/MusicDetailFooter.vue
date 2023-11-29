@@ -54,22 +54,17 @@ function playMusic() {
     audio.value.play()
     audio.value.volume = 0.1
     store.commit('updateIsBtnShow', false)
-    // updateTime()
   }, 200)
 }
 
 function stopMusic() {
   audio.value.pause()
   store.commit('updateIsBtnShow', true)
-  // clearInterval(interVal.value)
 }
 
 // 更新当前播放的时间节点
-// const interVal = ref(0)
 const updateTime = (e) => {
-  // interVal.value = setInterval(() => {
   store.commit('updateCurrentTIme', e.target.currentTime)
-  // }, 50)
 }
 /**
  * playListIndex为computed响应式对象,非模板使用需要.value
