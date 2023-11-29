@@ -9,7 +9,7 @@
       <van-swipe :loop="false" :width="150" class="musicListSwiper" :show-indicators="false">
         <van-swipe-item v-for="item in musicList" :key="item">
           <!--路由跳转到对应的歌单列表-->
-          <router-link :to="{path: '/musicDetail', query:{id: item.id}}">
+          <router-link :to="{path: '/albumDetail', query:{id: item.id}}">
             <!--歌曲封面地址-->
             <img :src="item.picUrl" alt="">
             <!--歌曲播放次数-->
@@ -86,6 +86,8 @@ function changeCountUnit(playCount) {
       img {
         width: 100%;
         height: 65%;
+        padding: .1rem;
+        border-radius: .3rem;
       }
 
       .playCount {

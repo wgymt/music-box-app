@@ -14,6 +14,9 @@ dependencies:
   core-js:
     specifier: ^3.6.5
     version: 3.33.3
+  style.css:
+    specifier: link:vue3-marquee/dist/style.css
+    version: link:vue3-marquee/dist/style.css
   vant:
     specifier: ^4.8.0
     version: 4.8.0(vue@3.3.8)
@@ -23,6 +26,9 @@ dependencies:
   vue-router:
     specifier: ^4.0.0-0
     version: 4.2.5(vue@3.3.8)
+  vue3-marquee:
+    specifier: ^4.1.0
+    version: 4.1.0(vue@3.3.8)
   vuex:
     specifier: ^4.0.0-0
     version: 4.1.0(vue@3.3.8)
@@ -5526,6 +5532,7 @@ packages:
   /is-glob@3.1.0:
     resolution: {integrity: sha512-UFpDDrPgM6qpnFNI+rh/p3bUaq9hKLZN8bMUWzxmcnZVS3omf4IPK+BrewlnWjO1WmUsMYuSjKh4UJuV4+Lqmw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       is-extglob: 2.1.1
     dev: true
@@ -6703,6 +6710,7 @@ packages:
 
   /path-dirname@1.0.2:
     resolution: {integrity: sha512-ALzNPpyNq9AqXMBjeymIjFDAkAFH06mHJH/cSBHAgU0s4vfpBn6b2nf8tiRLvagKD8RbTpq2FKTBg7cl9l3c7Q==}
+    requiresBuild: true
     dev: true
 
   /path-exists@3.0.0:
@@ -8909,6 +8917,15 @@ packages:
   /vue-template-es2015-compiler@1.9.1:
     resolution: {integrity: sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==}
     dev: true
+
+  /vue3-marquee@4.1.0(vue@3.3.8):
+    resolution: {integrity: sha512-AkvpNC6+7CwvIBgiAr8qMs1XvhGhfSS2ahlMEp80YXAmDOP8nDdn/smQ6eWtusf+hLX21yTaSOoKGcill4bCRg==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      vue: ^3.2
+    dependencies:
+      vue: 3.3.8
+    dev: false
 
   /vue@3.3.8:
     resolution: {integrity: sha512-5VSX/3DabBikOXMsxzlW8JyfeLKlG9mzqnWgLQLty88vdZL7ZJgrdgBOmrArwxiLtmS+lNNpPcBYqrhE6TQW5w==}

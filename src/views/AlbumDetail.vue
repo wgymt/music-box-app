@@ -7,7 +7,7 @@
 <script setup>
 import {onMounted, ref} from "vue";
 import {useRoute} from "vue-router";
-import {getMusicDetailList, getMusicList} from "@/request/api/musicDetail.js";
+import {getAlbumList, getMusicDetailList} from "@/request/api/albumDetail.js";
 import MusicDetailTop from "@/components/detail/MusicDetailTop.vue";
 import MusicDetailBottom from "@/components/detail/MusicDetailBottom.vue";
 
@@ -20,8 +20,7 @@ onMounted(async () => {
   const detailRes = await getMusicDetailList(id)
   playlist.value = detailRes.data.playlist
   // 根据id获取歌单所有歌曲
-  const musicRes = await getMusicList(id)
-  // console.log(musicRes.data.songs)
+  const musicRes = await getAlbumList(id)
   songs.value = musicRes.data.songs
 })
 </script>

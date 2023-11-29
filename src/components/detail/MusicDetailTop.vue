@@ -78,8 +78,7 @@ import {
   ShareOne as IconShareOne
 } from "@icon-park/vue-next";
 
-const props = defineProps(['playlist'])
-// console.log("歌曲详情列表: ", props)
+defineProps(['playlist'])
 
 // 转换计算单位
 function changeCountUnit(playCount) {

@@ -15,7 +15,7 @@
 
     <div class="itemList">
       <div class="item" v-for="(song , index) in songs" :key="index">
-        <div class="itemLeft" @click="playSong(index)">
+        <div class="itemLeft" @click="playSong(songs, index)">
           <!--歌曲编号-->
           <span class="leftSpan">{{ index + 1 }}</span>
           <div>
@@ -46,15 +46,17 @@ import {
   PlayTwo as IconPlayTwo,
   Plus as IconPlus
 } from "@icon-park/vue-next";
+import {useStore} from "vuex";
 
 const props = defineProps(['songs', 'subscribedCount'])
-// console.log("songs props: ", props)
 
+const store = useStore()
 
-// 播放歌曲
-function playSong(index) {
+// 点击播放歌曲
+function playSong(playList, songIndex) {
+  store.commit('updatePlayList', playList)
+  store.commit('updatePlayListIndex', songIndex)
 }
-
 </script>
 
 <style lang="less" scoped>

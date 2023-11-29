@@ -4,8 +4,10 @@ import router from './router'
 import store from './store'
 import '@icon-park/vue-next/styles/index.less'
 import getVant from "@/plugins/vantInput.js";
+import Vue3Marquee from 'vue3-marquee'
 
 const app = createApp(App)
+    .use(Vue3Marquee)
     .use(store)
     .use(router);
 
@@ -13,4 +15,3 @@ const app = createApp(App)
 getVant(app);
 
 app.mount('#app')
-

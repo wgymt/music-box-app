@@ -1,8 +1,8 @@
-import Sticky, {Button, Swipe, SwipeItem} from "vant";
+import Popup, {Button, Swipe, SwipeItem} from "vant";
 
 // 把需要导入的组件,放到数组中
 let plugins = [
-    Swipe, SwipeItem, Button, Sticky
+    Swipe, SwipeItem, Button, Popup
 ]
 
 export default function getVant(app) {
